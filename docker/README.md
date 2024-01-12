@@ -1,8 +1,4 @@
-# Docker Commands
-
-Welcome to the Docker Commands section! This document provides a quick reference for various Docker commands.
-
-## Table of Contents
+# Table of Contents
 - [Basics](#basics)
 - [Images](#images)
 - [Containers](#containers)
@@ -16,7 +12,10 @@ Welcome to the Docker Commands section! This document provides a quick reference
 
 - `docker info`: Display Docker system information
 
+- `sudo service docker restart`: Restart Docker
+
 - `docker pull image_name:tag`: Pull a Docker image
+
 
 ## Images
 
