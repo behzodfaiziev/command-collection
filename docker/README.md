@@ -21,13 +21,15 @@
 
 - `docker images`: List Docker images
 
-- `docker build -t image_name:tag .`: Build a Docker image from a Dockerfile
+- `docker build -t <docker_id>/<repo_name>:<version> .`: Build a Docker image from a Dockerfile using a custom tag. Example: `docker build -t bbillionaire/myapp:1.0 .`
 
 - `docker rmi image_name:tag`: Remove a Docker image
 
 ## Containers
 
 - `docker run <image_name>`: Run a Docker container
+
+- `docker run -p 3232:8080 <image_name>`: Run a Docker container and map port 3232 on the host to port 8080 in the container
 
 - `docker create <image_name>`: Create a Docker container
 
@@ -55,6 +57,23 @@
 
 - `docker run -it <image_name> sh`: Run a container and open a shell in it
 
+## Build and Deploy
+- `docker build .`: Build a Docker image from a Dockerfile in the current directory
+
+
+## Compose
+
+- `docker-compose up`: Bring up Docker Compose services
+
+- `docker-compose up -d`: Bring up Docker Compose services in detached mode
+
+- `docker-compose up --build`: Build and bring up Docker Compose services
+
+- `docker-compose down`: Stop and remove Docker Compose services
+
+- `docker-compose logs`: View logs from Docker Compose services
+
+- `docker-compose logs -f`: Follow logs from Docker Compose services (Real-time)
 
 ## Networks
 
@@ -71,11 +90,3 @@
 - `docker volume create volume_name`: Create a Docker volume
 
 - `docker volume inspect volume_name`: Inspect a Docker volume
-
-## Compose
-
-- `docker-compose up -d`: Bring up Docker Compose services in detached mode
-
-- `docker-compose down`: Stop and remove Docker Compose services
-
-- `docker-compose logs`: View logs from Docker Compose services
