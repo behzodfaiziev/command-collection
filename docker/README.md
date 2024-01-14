@@ -16,6 +16,11 @@
 
 - `docker pull image_name:tag`: Pull a Docker image
 
+- `docker build .`: Build a Docker image from a Dockerfile in the current directory
+
+- `docker build -f <pathTtoDockerfile> .`: Build a Docker image from a Dockerfile in a specific directory. 
+Expample: ` `
+
 
 ## Images
 
@@ -30,6 +35,8 @@
 - `docker run <image_name>`: Run a Docker container
 
 - `docker run -p 3232:8080 <image_name>`: Run a Docker container and map port 3232 on the host to port 8080 in the container
+
+- `docker run -it <image_name> sh`: Run a container and open a shell in it
 
 - `docker create <image_name>`: Create a Docker container
 
@@ -55,11 +62,6 @@
 
 - `docker exec -it <container_id> sh`: Open a shell in a container (CTRL+D to exit). Note: `sh` may be replaced with `bash`, `powershell` or `zsh`.
 
-- `docker run -it <image_name> sh`: Run a container and open a shell in it
-
-## Build and Deploy
-- `docker build .`: Build a Docker image from a Dockerfile in the current directory
-
 
 ## Compose
 
@@ -84,6 +86,9 @@
 - `docker network inspect network_name`: Inspect a Docker network
 
 ## Volumes
+
+- `docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <image_name>`: Run a Docker container and mount a volume. This is useful for development because it allows you to make changes to your code without having to rebuild the image.
+
 
 - `docker volume ls`: List Docker volumes
 
