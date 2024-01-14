@@ -12,11 +12,11 @@ In this repository, you'll find a diverse range of commands, scripts, and snippe
 
 The repository currently includes commands for the following services (expand this list as you add more content):
 - Git
-- Flutter
+- [Flutter](./flutter/README.md)
 - Firebase CLI for Flutter
 - Spring Boot
-- .net CORE
-- [Docker](#./flutter/README.md)
+- [.Net Core](./dotnet-core/README.md)
+- [Docker](./docker/README.md)
 - Amazon Web Services (AWS)
 - Linux/Unix Shell Commands
 - and more...
