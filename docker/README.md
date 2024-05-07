@@ -62,6 +62,9 @@ Expample: ` `
 
 - `docker exec -it <container_id> sh`: Open a shell in a container (CTRL+D to exit). Note: `sh` may be replaced with `bash`, `powershell` or `zsh`.
 
+## Nginx
+- `docker exec container_id nginx -t`: This command will test the Nginx configuration
+
 
 ## Compose
 
