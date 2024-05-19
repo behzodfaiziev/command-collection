@@ -15,7 +15,7 @@ The repository currently includes commands for the following services (expand th
 - [Flutter](./flutter/README.md)
 - Firebase CLI for Flutter
 - Spring Boot
-- React
+- [React](./react/README.md)
 - [.Net Core](./dotnet-core/README.md)
 - [Docker](./docker/README.md)
 - Amazon Web Services (AWS)
