@@ -7,7 +7,7 @@
 
 ## React-ts-Deployment
  - Create Dockerfile in the root of the project
-```dockerfile
+```yaml
 name: Deploy React App to Elastic Beanstalk
 on:
   push:
@@ -42,7 +42,7 @@ jobs:
           deployment_package: deploy.zip
 ```
  - Create Dockerrun.aws.json in the root of the project
-```dockerfile
+```yaml
 version: '3'
 services:
   web:
