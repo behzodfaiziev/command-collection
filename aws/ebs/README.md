@@ -83,6 +83,7 @@ jobs:
   - `AWSElasticBeanstalkWorkerTier`
   - `AWSElasticBeanstalkWebTier`
   - `AWSElasticBeanstalkMulticontainerDocker`
+- If you use ECR for deployment, attach `AmazonEC2ContainerRegistryReadOnly` policy
 - Set the role name
   as ```aws-elasticbeanstalk-ec2-role-<applicationName>-react-<environmentName>```
 
