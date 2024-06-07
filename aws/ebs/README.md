@@ -63,14 +63,16 @@ jobs:
 
 #### Create Dockerrun.aws.json in the root of the project
 ```yaml
-version: '3'
-services:
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - '80:80'
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "<STRING>.dkr.ecr.<REGION>.amazonaws.com/<APP-NAME>:<version-tag>",
+    "Update": "true"
+  },
+  "Ports": [{
+    "ContainerPort": "80"
+  }]
+}
 ``` 
 
 ### Configure EC2 Role
