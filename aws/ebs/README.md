@@ -45,6 +45,8 @@ jobs:
       - name: Prepare Dockerrun file
         run: |
           export IMAGE_TAG=${{ github.sha }}
+          export APP_NAME=<App-Name>
+          sed -i 's/<app-name>/'"$APP_NAME"'/g' Dockerrun.aws.json
           sed -i 's/<version-tag>/'"$IMAGE_TAG"'/g' Dockerrun.aws.json
           zip -r deploy.zip Dockerrun.aws.json .platform/
 
@@ -66,7 +68,7 @@ jobs:
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "<STRING>.dkr.ecr.<REGION>.amazonaws.com/<APP-NAME>:<version-tag>",
+    "Name": "<STRING>.dkr.ecr.<REGION>.amazonaws.com/<app-name>:<version-tag>",
     "Update": "true"
   },
   "Ports": [{
