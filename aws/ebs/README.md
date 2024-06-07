@@ -10,36 +10,53 @@
 
 ### Create Dockerfile in the root of the project
 ```yaml
-name: Deploy React App to Elastic Beanstalk
+name: Deploy to Elastic Beanstalk
 on:
   push:
     branches:
       - main
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Build Docker image
-        run: docker build -t <repository name> -f Dockerfile .
   deploy:
     runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Generate deployment package
-        run: zip -r deploy.zip . -x '*.git*'
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.<ENV>_AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.<ENV>_AWS_SECRET_KEY }}
+          aws-region: <REGION>
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      - name: Build, tag, and push image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: <REPOSITORY>
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build \
+          -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+      - name: Prepare Dockerrun file
+        run: |
+          export IMAGE_TAG=${{ github.sha }}
+          sed -i 's/<version-tag>/'"$IMAGE_TAG"'/g' Dockerrun.aws.json
+          zip -r deploy.zip Dockerrun.aws.json .platform/
+
       - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v18
         with:
           aws_access_key: ${{ secrets.<ENV>_AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.<ENV>_AWS_SECRET_KEY }}
-          application_name: <application-name>
-          environment_name: <environment-name>
-          existing_bucket_name: <bucket-name>
-          region: <region>
+          application_name: <Application-Name>
+          environment_name: <Environment-Name>
+          existing_bucket_name: <SES-Bucket-Name>
+          region: <REGION>
           version_label: ${{ github.sha }}
           deployment_package: deploy.zip
 ```
