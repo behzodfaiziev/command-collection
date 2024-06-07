@@ -55,7 +55,7 @@ jobs:
           aws_secret_key: ${{ secrets.<ENV>_AWS_SECRET_KEY }}
           application_name: <Application-Name>
           environment_name: <Environment-Name>
-          existing_bucket_name: <SES-Bucket-Name>
+          existing_bucket_name: <S3-Bucket-Name>
           region: <REGION>
           version_label: ${{ github.sha }}
           deployment_package: deploy.zip
