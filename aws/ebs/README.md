@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [React TS App Deployment](#React-ts-Deployment)
+- [Configure Nginx Redirection For Reat App](#Configure-Nginx-Redirection-For-React-App)
 - [Spring Boot App Deployment](#spring-boot-deployment)
 
 ## React-ts-Deployment
@@ -108,3 +109,31 @@ services:
 - Select the role created in the previous step
 #### Skip to review
 - Review the configuration and click `Create environment`
+
+
+
+# Configure-Nginx-Redirection-For-React-App
+
+### Create nginx.conf in the root of the project
+```yaml
+server {
+    listen       80;
+    server_name  localhost;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+        try_files $uri /index.html;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+```
+
+### Add the following lines to Dockerfile before EXPOSE 80
+```yaml
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+```
