@@ -92,6 +92,7 @@ jobs:
 ### Configure IAM User
 
 - In AWS IAM service create a user and attach ```AdministratorAccess-AWSElasticBeanstalk``` policy
+- If you user ECR attach these policies as well ```AmazonEC2ContainerRegistryPowerUser```, ```AmazonEC2ContainerRegistryReadOnly``` and ```AmazonEC2ContainerServiceEventsRole```
 - In Security Credentials of created user create an access key and secret key using CLI
 - Add these keys to GitHub repository secrets as `<ENV>_AWS_ACCESS_KEY` and `<ENV>_AWS_SECRET_KEY`
 
