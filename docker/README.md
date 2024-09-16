@@ -30,6 +30,8 @@ Expample: ` `
 
 - `docker rmi image_name:tag`: Remove a Docker image
 
+- `sudo docker rmi $(sudo docker images -q)`: Remove all images
+
 ## Containers
 
 - `docker run <image_name>`: Run a Docker container
@@ -48,9 +50,13 @@ Expample: ` `
 
 - `docker stop <container_id>`: Stop a running Docker container
 
+- `sudo docker stop $(sudo docker ps -q)`: Stop all Docker containers
+
 - `docker kill <container_id>`: Kill a running Docker container (needed  when docker is not repsponding to stop)
 
 - `docker rm <container_id>`: Remove a Docker container
+
+- `sudo docker rmi $(sudo docker images -q)`: Remove all Docker Containers (but first stop all containers)
 
 - `docker system prune`: Remove all stopped containers, dangling images, and unused networks and volumes (use with caution)
 
