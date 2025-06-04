@@ -110,3 +110,5 @@ After setting up endpoints and security groups:
 - **Security Group ID**: for EC2 and endpoint SG (can be the same SG)
 
 ---
+
+# Note: Each Enpoint is charged  
